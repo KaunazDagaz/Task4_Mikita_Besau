@@ -14,19 +14,5 @@ namespace task4.Entities
                 .HasIndex(u => u.Email)
                 .IsUnique();
         }
-
-        public async Task<(User? user, string? error)> ValidateUserAsync(string email)
-        {
-            var user = await Users.FirstOrDefaultAsync(u => u.Email == email);
-            if (user == null)
-            {
-                return (null, "Invalid email.");
-            }
-            if (user.Status == "Blocked")
-            {
-                return (null, "Ooops! Looks like you are blocked.");
-            }
-            return (user, null);
-        }
     }
 }
