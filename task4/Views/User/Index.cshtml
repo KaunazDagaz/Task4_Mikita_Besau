@@ -9,17 +9,22 @@
     <form id="userForm">
         @Html.AntiForgeryToken()
         <div class="mb-3 d-flex align-items-center">
-            <button id="blockButton" class="btn btn-primary mr-2" type="button" title="Block selected users">
-                <i class="fas fa-lock"></i> Block
-            </button>
-            <button id="unblockButton" class="btn btn-primary mr-2" type="button" title="Unblock selected users">
-                <i class="fas fa-lock-open"></i>
-            </button>
-            <button id="deleteButton" class="btn btn-danger mr-2" type="button" title="Delete selected users">
-                <i class="fas fa-trash"></i>
-            </button>
-            <div id="errorMessage" style="color: red; display: none;">Please select at least one user.</div>
-            <div id="successMessage" style="color: green; display: none;"></div>
+            <div class="d-flex">
+                <button id="blockButton" class="btn btn-primary mr-2" type="button" title="Block selected users">
+                    <i class="fas fa-lock"></i> Block
+                </button>
+                <button id="unblockButton" class="btn btn-primary mr-2" type="button" title="Unblock selected users">
+                    <i class="fas fa-lock-open"></i>
+                </button>
+                <button id="deleteButton" class="btn btn-danger mr-2" type="button" title="Delete selected users">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            <div class="ml-3">
+                <div id="errorMessage" style="color: red; display: none;">Please select at least one user.</div>
+                <div id="successMessage" style="color: green; display: none;"></div>
+            </div>
+            <input type="text" id="emailFilter" class="form-control ml-auto" style="max-width: 250px;" placeholder="Filter by Email" />
         </div>
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
@@ -56,6 +61,7 @@
 
 @section Scripts {
     <script src="~/js/checkbox.js" asp-append-version="true"></script>
+    <script src="~/js/filter.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" crossorigin="anonymous"></script>
 }
