@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using task4.Entities;
 using task4.Models;
-using task4.Utils;
+using Isopoh.Cryptography.Argon2;
 
 public class AccountService : IAccountService
 {
@@ -40,7 +40,7 @@ public class AccountService : IAccountService
         {
             return (false, error);
         }
-        if (!IsPasswordValid(model.Password, user!))
+        if (!Argon2.Verify(user!.PasswordHash, model.Password))
         {
             return (false, "Invalid password.");
         }
@@ -68,11 +68,6 @@ public class AccountService : IAccountService
         {
             return (false, "Email is already taken.");
         }
-    }
-
-    private bool IsPasswordValid(string password, User user)
-    {
-        return AccountUtils.HashPassword(password) == user.PasswordHash;
     }
 
     private async Task UpdateLastLoginAsync(User user)
